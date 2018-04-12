@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.Product;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +23,23 @@ public class ProductEndpoint {
 
 
 
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Product> list() {
+        return this.buildProducts();
+    }
 
-    private List<Product> list(){
+    @RequestMapping(value = "/{itemCode}", method = RequestMethod.GET)
+    public Product detail(@PathVariable String itemCode) {
+        List<Product> products = this.buildProducts();
+        for (Product product : products) {
+            if (product.getItemCode().equalsIgnoreCase(itemCode))
+                return product;
+        }
+        return null;
+    }
+
+
+    private List<Product> buildProducts(){
         List<Product> products = new ArrayList<>();
         products.add(new Product("item-1", "测试商品-1", "TwoStepsFromJava", 100));
         products.add(new Product("item-2", "测试商品-2", "TwoStepsFromJava", 200));
