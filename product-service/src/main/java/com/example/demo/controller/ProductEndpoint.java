@@ -20,7 +20,7 @@ public class ProductEndpoint {
     protected Logger logger = LoggerFactory.getLogger(ProductEndpoint.class);
 
 
-    
+
 
     private List<Product> list(){
         List<Product> products = new ArrayList<>();
