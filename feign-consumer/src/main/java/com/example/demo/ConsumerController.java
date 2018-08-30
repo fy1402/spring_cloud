@@ -19,4 +19,13 @@ public class ConsumerController {
         return helloService.hello();
     }
 
+    @RequestMapping("/feign-consumer2")
+    public String helloConsumer2() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(helloService.hello()).append("\n");
+        stringBuilder.append(helloService.hello("DIDI")).append("\n");
+        stringBuilder.append(helloService.hello("DIDI", 100)).append("\n");
+        stringBuilder.append(helloService.hello(new User("DIDI", 100))).append("\n");
+        return stringBuilder.toString();
+    }
 }

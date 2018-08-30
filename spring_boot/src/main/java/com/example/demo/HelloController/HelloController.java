@@ -1,14 +1,14 @@
 package com.example.demo.HelloController;
 
 import com.example.demo.model.Book;
+import com.example.demo.model.User;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
 
@@ -57,5 +57,22 @@ public class HelloController {
         log.info(test_01);
         return name;
     }
+
+    @RequestMapping("/hello1")
+    public String hello(@RequestParam String name) {
+        return "Hello " + name;
+    }
+
+    @RequestMapping("/hello2")
+    public User hello(@RequestHeader String name, @RequestHeader Integer age) {
+        return new User(name, age);
+    }
+
+    @RequestMapping("/hello3")
+    public String hello(@RequestBody User user) {
+        return "Hello " + user.toString();
+    }
+
+
 
 }
