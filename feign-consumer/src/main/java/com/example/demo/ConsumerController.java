@@ -14,6 +14,9 @@ public class ConsumerController {
     @Autowired
     private HelloService helloService;
 
+    @Autowired
+    private RefactorHelloService refactorHelloService;
+
     @RequestMapping("/feign-consumer")
     public String helloConsumer() {
         return helloService.hello();
@@ -26,6 +29,15 @@ public class ConsumerController {
         stringBuilder.append(helloService.hello("DIDI")).append("\n");
         stringBuilder.append(helloService.hello("DIDI", 100)).append("\n");
         stringBuilder.append(helloService.hello(new User("DIDI", 100))).append("\n");
+        return stringBuilder.toString();
+    }
+
+    @RequestMapping("/feign-consumer3")
+    public String helloConsumer3() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(refactorHelloService.hello("MIMI")).append("\n");
+        stringBuilder.append(refactorHelloService.hello("MINI", 20)).append("\n");
+        stringBuilder.append(refactorHelloService.hello(new com.ifeng.dto.User("MINI", 20))).append("\n");
         return stringBuilder.toString();
     }
 }

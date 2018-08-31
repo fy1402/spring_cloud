@@ -1,13 +1,11 @@
-package com.example.demo.HelloController;
+package com.demo.hello.HelloController;
 
-import com.example.demo.model.Book;
-import com.example.demo.model.User;
+import com.demo.hello.HelloController.Service.RefactorHelloController;
+import com.demo.hello.model.Book;
+import com.demo.hello.model.User;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
@@ -26,6 +24,8 @@ public class HelloController {
     @Value(("${com.didispace.blog.int_1}"))
     private int test_01;
 
+    @Autowired
+    private RefactorHelloController refactorHelloController;
 
     @RequestMapping("/hello")
     public String hello() {
@@ -73,6 +73,13 @@ public class HelloController {
         return "Hello " + user.toString();
     }
 
-
+//    @RequestMapping("/feign-consumer3")
+//    public String helloConsumer3() {
+//        StringBuilder stringBuilder = new StringBuilder();
+//        stringBuilder.append(refactorHelloController.hello("MIMI")).append("\n");
+//        stringBuilder.append(refactorHelloController.hello("MINI", 20)).append("\n");
+//        stringBuilder.append(refactorHelloController.hello(new com.ifeng.dto.User("MINI", 20))).append("\n");
+//        return stringBuilder.toString();
+//    }
 
 }

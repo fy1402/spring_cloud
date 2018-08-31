@@ -1,6 +1,7 @@
-package com.example.demo.service;
+package com.ifeng.service;
 
-import com.example.demo.dto.User;
+import com.ifeng.dto.User;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,4 +18,7 @@ public interface HelloService {
 
     @RequestMapping("/hello5")
     User hello(@RequestHeader("name") String name, @RequestHeader("age") Integer age);
+
+    @RequestMapping("/hello6")
+    String hello(@RequestBody User user);
 }

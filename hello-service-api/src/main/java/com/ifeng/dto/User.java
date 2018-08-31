@@ -1,6 +1,5 @@
-package com.example.demo.model;
+package com.ifeng.dto;
 
-import lombok.Builder;
 import lombok.Data;
 
 /**
