@@ -36,11 +36,11 @@ public class HelloController {
         int sleepTime = new Random().nextInt(3000);
         log.info("sleepTime: " + sleepTime);
 
-        try {
-            Thread.sleep(sleepTime);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(sleepTime);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         long end = System.currentTimeMillis();
         log.info("currentTime: " + (end - start));
